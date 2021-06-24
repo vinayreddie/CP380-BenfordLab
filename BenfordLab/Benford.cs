@@ -33,6 +33,12 @@ namespace BenfordLab
             // Select() with:
             //   - Country
             //   - Digit (using: FirstDigit.getFirstDigit() )
+
+            var result= data .Select(data => new
+                {
+                    Country = data.Groups[1].Value,
+                    Population = int.Parse(FirstDigit.getFirstDigit(data.Groups[2].Value))
+                });
             // 
             // Then:
             //   - you need to count how many of *each digit* there are
@@ -41,7 +47,7 @@ namespace BenfordLab
             //   - transform (select) the data so that you have a list of
             //     BenfordData objects
             //
-            var m = ??? ;
+            var m = result;
 
             return m.ToArray();
         }
