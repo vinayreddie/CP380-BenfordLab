@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -33,22 +33,17 @@ namespace BenfordLab
             // Select() with:
             //   - Country
             //   - Digit (using: FirstDigit.getFirstDigit() )
-
-            var result= data .Select(data => new
-                {
-                    Country = data.Groups[1].Value,
-                    Population = int.Parse(FirstDigit.getFirstDigit(data.Groups[2].Value))
-                });
-            // 
-            // Then:
-            //   - you need to count how many of *each digit* there are
-            //
-            // Lastly:
-            //   - transform (select) the data so that you have a list of
-            //     BenfordData objects
-            //
+            var result = data.GroupBy(
+                     row => 
+                     (FirstDigit.getFirstDigit(row.Population))
+                 ).Select(
+                     groups => new BenfordData
+                     {
+                         Digit = groups.Key,
+                         Count = groups.Count()
+                     }
+                 );
             var m = result;
-
             return m.ToArray();
         }
     }
