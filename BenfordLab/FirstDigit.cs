@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +22,7 @@ namespace BenfordLab
                 digit /= 10;
 
             // return the first digit
-            return n;
+            return digit;
 
 
             //return 0;
